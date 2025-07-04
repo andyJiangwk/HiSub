@@ -1,10 +1,38 @@
+'''Generating the peak mass function(PMF) for subhalos of any level'''
 import numpy as np
 from scipy.fft import fft,ifft
+from scipy.interpolate import interp1d
+
 def db(x,a1,a2,al1,al2,c,d):
+    '''double-Schechter function'''
     return (a1*x**al1+a2*x**al2)*np.exp(-c*x**d)
 
 
 def level_o(x,n,init,conv):
+    '''
+    Functions that 
+
+
+    Input
+    --------------
+    x: float array 
+    An array of the interested peak mass ratio.
+
+    n: int
+    The hierarchical level of subhalo population
+    (0 for all-level subhalos, n>1 for subhalos of specific level)
+
+    init: function
+    A function used to describe the level-1 PMF. 
+
+    conv: function
+    The convolution kernel to propagate the PMF into higher levels.
+    
+
+    Output:
+    --------------
+    The PMF values for the peak mass ratios input "x" of a given level n.
+    '''
     if n==0:
         qspace = np.arange(-20,0,0.001)
         muspace = np.exp(qspace)
@@ -49,9 +77,9 @@ def level_o(x,n,init,conv):
         #print(mus)
         return intep1(x,mus,y_inv2t/mus)
 
-from scipy.interpolate import interp1d
+
 def intep1(x0,xlist,ylist):
-    from scipy.interpolate import interp1d
+    "Interpolation in log space."
     interp = interp1d(np.log10(xlist),np.log10(ylist))
     xres = []
     for x in x0:
@@ -60,7 +88,5 @@ def intep1(x0,xlist,ylist):
             logx = interp(fac1)
             xres.append(10**(logx))
         except ValueError:
-            import traceback
-            #traceback.print_exc()
             xres.append(0)
     return np.array(xres)
