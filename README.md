@@ -1,4 +1,4 @@
-# HiSub
+# HiSub: Unveiling Self-Similarity in Subhalo Hierarchy
 `HiSub` is a Python package aiming to construct the subhalo hierarchy numerically. The related paper can be found in https://arxiv.org/pdf/2502.20181. 
 
 ## Features
