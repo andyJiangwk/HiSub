@@ -26,8 +26,8 @@ ft_tick=22
 ft_text=33
 xtest = np.logspace(-4,0,100)
 
-fitting_t = (0.029, 0.273, 1-0.94, 1-0.54, 12.89, 2.26)
-fitting_t1 = get_correct_parameter(fitting_t,0.726)
+fitting_t = (0.029, 0.273, 1-0.94, 1-0.54, 12.89, 2.26) # The level-1 PMF is described by the double-Schechter function, and in the form of  (\mu)*dN/dlog(\mu)
+fitting_t1 = get_correct_parameter(fitting_t,0.726) # The convolutional kernel
 
 fig = plt.figure(figsize=(8,8))
 ax1 = fig.add_subplot()
