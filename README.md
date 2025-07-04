@@ -6,7 +6,7 @@
 - Deriving the hierarchical origins of subhalos based on their levels, including the accretion rate, the initial merger ratio
   the accretion redshift distribution. (Developing)
 ## Preruquisite
-`SubHier` relies only on several basic Python modules for scientific calculation:  `numpy`, `scipy`, `math`, `matplotlib`.
+`SubHier` relies solely on several fundamental Python modules for scientific computing:  `numpy`, `scipy`, `math`, `matplotlib`.
 
 ## Examples
 See example.py
