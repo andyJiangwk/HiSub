@@ -1,5 +1,5 @@
 # SubHier
-`SubHier` is a Python package for 
+`SubHier` is a Python package aiming to construct the subhalo hierarchy numerically.
 
 ## Features
 - Calculating the peak mass function(PMF) of subhalos of any level through self-convolution.
@@ -9,5 +9,5 @@
 `SubHier` relies only on several basic Python modules for scientific calculation:  `numpy`, `scipy`, `math`. They are built-in modules in most cases.
 
 ## Installation
-
+> pip install SubHier
 
