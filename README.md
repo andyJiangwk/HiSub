@@ -6,7 +6,10 @@
 - (Developing) Deriving the hierarchical origins of subhalos based on their levels, including the accretion rate, the initial merger ratio
   the accretion redshift distribution. 
 ## Prerequisite
-`HiSub` relies solely on several fundamental Python modules for scientific computing:  `numpy`, `scipy`, `math`, `matplotlib`.
+`HiSub` relies on several fundamental Python modules for scientific computing:  `numpy`, `scipy`, `math`, `matplotlib`. Additionally, the python package `colossus`
+is also necessary if you want to calculate the accretion redshift distribution for subhalos.
+> pip install colossus
+
 
 ## Examples
 See example.py
