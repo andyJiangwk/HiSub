@@ -3,7 +3,7 @@
 
 ## Features
 - Calculating the peak mass function(PMF) of subhalos of any level through self-convolution.
-- (Developing) Deriving the hierarchical origins of subhalos based on their levels, including the accretion rate, the initial merger ratio
+- Deriving the hierarchical origins of subhalos based on their levels, including the accretion rate, the initial merger ratio
   the accretion redshift distribution. 
 ## Prerequisite
 `HiSub` relies on several fundamental Python modules for scientific computing:  `numpy`, `scipy`, `math`, `matplotlib`. Additionally, the Python package `colossus`
@@ -13,3 +13,6 @@ is also necessary if you want to calculate the accretion redshift distribution f
 
 ## Examples
 See example.py
+
+## Contact
+e-mail: eventually@sjtu.edu.cn
