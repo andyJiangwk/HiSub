@@ -22,21 +22,24 @@ class MAH_Zhao:
         self.rho = 3 * H**2 / (8 * math.pi * G) * self.params['Om0']
 
     def sigma(self, M):
+        '''Calculate \sigma(M)'''
         r0 = self.R(M)
         return self.cosmo.sigma(r0, z=0)
 
     def M_sig(self, sig):
+        '''Calculate M(\sigma)'''
         r0 = self.cosmo.sigma(sig, z=0, inverse=True)
         return 4 / 3 * math.pi * r0**3 * self.rho
 
     def deriv_S(self, M):
+        '''Calculate dS/dM'''
         r0 = self.R(M)
-        # fac2 = (3*M/(4*math.pi*self.rho))**(-2/3)/(4*math.pi*self.rho)
         fac2 = 1 / 3
         sg_d = self.cosmo.sigma(r0, z=0, derivative=True)
         return sg_d * fac2
 
     def deltac(self, z):
+        '''Calculate d\delta_c/dz'''
         a0 = self.cosmo.growthFactor(z)
         deltacn = 1.686 * self.cosmo.Om(z)**(0.0055)
         return deltacn / a0
@@ -56,7 +59,6 @@ class MAH_Zhao:
     def sigM_deriv(self, M):
         sig = self.sigma(M)
         r0 = self.R(M)
-        # fac2 = (3*M/(4*math.pi*self.rho))**(-2/3)/(4*math.pi*self.rho)
         fac2 = r0**(-2) / (4 * math.pi * self.rho)
         sg_d = self.cosmo.sigma(r0, z=0, derivative=True)
         return sg_d * (sig / r0) * fac2
@@ -74,14 +76,37 @@ class MAH_Zhao:
         return ans1
 
     def get_accf_nop(self, Mn, zf, z0, M0):
+        '''
+            Get the accretion rate of dark matter halos. Neglecting the second term of Equation 10 in 
+            Zhao et al.(2008).
+        '''
         dervn = self.omega(Mn, zf)
         return dervn / 5.85
 
     def get_accf(self, Mn, zf, z0, M0):
+        '''
+            Get the accretion rate of dark matter halos
+        '''
         dervn = self.omega(Mn, zf)
         return (dervn - self.prob0(zf, M0, z0)) / 5.85
 
     def get_growth(self, Mh, zlist):
+        '''
+        Functions used to calculate the mass assembly history of given halos.
+
+        Input:
+        ---------
+        Mh: float
+        Halo mass   unit:10^10 Msun
+
+        zlist: float array
+        An array of redshifts in ascending order. 
+    
+        Output:
+        ---------
+        Mlist: float array
+        An array of halo masses for given halo at redshits specified by zlist
+        '''
         M = Mh
         z_start = zlist[0]
         sigmalist = []
