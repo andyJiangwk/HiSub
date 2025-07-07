@@ -114,10 +114,10 @@ class HiSub:
         '''
         Mhistory = MAH.get_growth(M_halo,z_array)
         Mhat = Mhistory/M_halo
-        Macc_rate = MAH.get_growth_rate(Mhistory,z_array,z_array[0],Mhistory[0],div_fac)/Mhistory[0]
+        Macc_rate = MAH.get_growth_rate(Mhistory,z_array,z_array[0],Mhistory[0])/Mhistory[0]
 
         f_2 = self.accretion_rate(mu_0/Mhat,depth)
-        PMF_norm = self._PMF1(np.array([mu0,]),depth) 
+        PMF_norm = self._PMF1(np.array([mu_0,]),depth) 
 
         fac1 = -(f_2/Mhat**2)
         fac2 = Macc_rate/PMF_norm
