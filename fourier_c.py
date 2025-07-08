@@ -7,6 +7,21 @@ def db(x,a1,a2,al1,al2,c,d):
     '''double-Schechter function'''
     return (a1*x**al1+a2*x**al2)*np.exp(-c*x**d)
 
+def get_correct_parameter(fitting_tt,factor):
+    ''' After applying the \beta factor for correction, the newly defined PMF in Equation 4 of Jiang et al.(2025) 
+        is exactly the double-Schechter function with another set of paramters. 
+
+        Therefore, this function is used to generate the parameters of corrected PMF for propagation.
+    '''
+    a1,a2,al1,al2,c,d = fitting_tt
+    fitting_t1 = [0,0,0,0,0,0]
+    fitting_t1[0] = a1*factor**(al1)/factor
+    fitting_t1[1] = a2*factor**(al2)/factor
+    fitting_t1[2] = al1
+    fitting_t1[3] = al2
+    fitting_t1[4] = c*factor**(d)
+    fitting_t1[5] = d
+    return fitting_t1
 
 def level_o(x,n,init,conv):
     '''

@@ -97,7 +97,7 @@ class MAH_Zhao:
         Input:
         ---------
         Mh: float
-        Halo mass   unit:10^10 Msun
+        Halo mass   unit:10^10 Msun h^{-1}
 
         zlist: float array
         An array of redshifts in ascending order. 
@@ -123,7 +123,7 @@ class MAH_Zhao:
 
         for zc, delc in zip(zlist[1:], delc_list[1:]):
             dlndc = np.log(delc) - np.log(delcf)
-            accf = self.get_accf(Mn, zf, z_start, Mh)
+            accf = self.get_accf_nop(Mn, zf, z_start, Mh)
             lns_n = np.log(sigma_i) + accf * dlndc
             Mn = self._M_sig(np.exp(lns_n))
 

@@ -39,17 +39,17 @@ class HiSub:
             Output:
             -------------
                 z_distribution: float array
-                    An array describing the dp/dxi distribution with the initial merger ratio specificed by xi_array
+                    An array describing the dp/dξ distribution with the initial merger ratio specificed by xi_array
         '''
         PMF_norm = self._PMF1(np.array([mu_0,]),depth)
         xi_t = mu_0/xi_array
         y_t1 = self._PMF1(xi_t,depth-1)
         y_t2 = self._PMF2(xi_array)
-        reslist = y_t1*y_t2/xi/PMF_norm
-        reslist=np.array(reslist)
+        reslist = y_t1*y_t2/xi_array/PMF_norm
+        reslist = np.array(reslist)
 
         norm = 0
-        for dx,dp in zip(np.diff(xi),(reslist[1:]+reslist[:-1])/2):
+        for dx,dp in zip(np.diff(xi_array),(reslist[1:]+reslist[:-1])/2):
             if np.isnan(dp):
                 continue
             else:
@@ -133,4 +133,4 @@ class HiSub:
     
     def _PMF2(self,x):
         ''' Level 1 convolved PMF in the form of dN/dμ'''
-        return db(x,*self.fitting_param_conv)
+        return db(x,*self.fitting_param_conv)/x**2
